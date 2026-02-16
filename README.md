@@ -8,11 +8,22 @@ These prompts are designed to be pasted directly into AI chat interfaces (Claude
 
 **Current focus:** Puzzles & Chaos (mobile strategy game)
 
+## Repository Structure
+
+Prompts are organized by game, one folder per game:
+
+```
+ai_game_prompts/
+├── puzzles_and_chaos/
+│   └── puzzles-chaos-inventory-audit.md
+└── README.md
+```
+
 ## Prompts
 
 | Prompt | Game | Function |
 |--------|------|----------|
-| `puzzles-chaos-inventory-audit.md` | Puzzles & Chaos | Classifies resource vs. speedup screenshots, then audits inventory and calculates totals per type |
+| [`puzzles-chaos-inventory-audit.md`](puzzles_and_chaos/puzzles-chaos-inventory-audit.md) | Puzzles & Chaos | Classifies resource vs. speedup screenshots, then audits inventory and calculates totals per type |
 
 ## How to Use
 
@@ -42,6 +53,7 @@ This project is in early stages. Contributions welcome:
 ### Prompt File Guidelines
 
 - Use Markdown (`.md`) for all prompt files.
+- Place prompts in the appropriate game folder (e.g., `puzzles_and_chaos/`). Create a new folder for a new game using `snake_case`.
 - Name files descriptively: `[game]-[function].md`
 - Include a header comment explaining what the prompt does, what screenshot types it handles, and which AI models it has been tested with.
 
