@@ -10,27 +10,32 @@ These prompts are designed to be pasted directly into AI chat interfaces (Claude
 
 ## Repository Structure
 
-Prompts are organized by game, one folder per game:
+Each game has its own folder containing two subfolders:
+
+- **`prompts/`** — Standalone, self-contained prompts. Copy-paste into any AI chat. No setup required.
+- **`skills/`** — Modular pieces for skill-based workflows. A master classifier identifies the screenshot type and loads only the relevant analysis skill, saving context window space.
 
 ```
 ai_game_prompts/
 ├── puzzles_and_chaos/
-│   └── puzzles-chaos-inventory-audit.md
+│   ├── prompts/
+│   │   └── inventory-audit.md              (standalone, all-in-one)
+│   ├── skills/
+│   │   ├── classifier.md                   (master: identifies screenshot type)
+│   │   ├── resource-audit-skill.md         (Protocol A: resources)
+│   │   └── speedup-audit-skill.md          (Protocol B: speedups)
+│   └── README.md
 └── README.md
 ```
 
-## Prompts
+## Prompts vs. Skills
 
-| Prompt | Game | Function |
-|--------|------|----------|
-| [`puzzles-chaos-inventory-audit.md`](puzzles_and_chaos/puzzles-chaos-inventory-audit.md) | Puzzles & Chaos | Classifies resource vs. speedup screenshots, then audits inventory and calculates totals per type |
+| Approach | Best for | How to use |
+|----------|----------|------------|
+| **Prompts** (standalone) | Quick use, free-tier AI, sharing with others | Copy the full prompt file, paste into AI chat, attach screenshots |
+| **Skills** (modular) | Repeated use, large inventories, preserving context window | Load the classifier as a skill/system prompt, then load the specific analysis skill as needed |
 
-## How to Use
-
-1. Copy the full text of a prompt file.
-2. Paste it into an AI assistant that supports image analysis (Claude, ChatGPT-4, etc.).
-3. Attach one or more game screenshots as described in the prompt.
-4. Review the structured output.
+Both approaches produce the same output. The skills version is more efficient with tokens since it only loads the protocol needed for the screenshot type detected.
 
 ## Prompt Design Principles
 
@@ -50,15 +55,17 @@ This project is in early stages. Contributions welcome:
 - **Add new prompts** — For other games or other in-game functions.
 - **Report issues** — If a prompt misreads inventory items or miscalculates totals, open an issue with the screenshot(s) and the AI's output.
 
-### Prompt File Guidelines
+### File Guidelines
 
-- Use Markdown (`.md`) for all prompt files.
-- Place prompts in the appropriate game folder (e.g., `puzzles_and_chaos/`). Create a new folder for a new game using `snake_case`.
-- Name files descriptively: `[game]-[function].md`
-- Include a header comment explaining what the prompt does, what screenshot types it handles, and which AI models it has been tested with.
+- Use Markdown (`.md`) for all prompt and skill files.
+- Place files in the appropriate game folder. Create a new game folder using `snake_case`.
+- **Prompts:** Name as `[function].md` (e.g., `inventory-audit.md`). Self-contained, includes all protocols.
+- **Skills:** Name as `[function]-skill.md` (e.g., `resource-audit-skill.md`). Each skill handles one protocol.
+- Include a header comment explaining what the file does, what screenshot types it handles, and which AI models it has been tested with.
 
 ## Roadmap
 
+- [ ] Add hero inventory prompt with wiki lookup integration
 - [ ] Expand single-step prompts into multi-step workflows for complex tasks
 - [ ] Add prompts for additional Puzzles & Chaos functions
 - [ ] Test and document compatibility across AI models (Claude, GPT-4, Gemini)
