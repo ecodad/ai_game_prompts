@@ -8,31 +8,42 @@ The Curio Warehouse displays Curios in a 2-column grid. Each Curio box contains:
 
 EXTRACT THESE FOUR FIELDS PER CURIO:
 - Name: The Curio name text to the right of the image, after the star count. Combine wrapped lines into one name.
-- Rarity: Determined from the text color (see below).
+- Rarity: Determined from the border color of the curio image box (see below).
 - Enhancement: The +N number in the upper-left of the Curio image. Include the + symbol in output.
 - Ascension: The number before the star symbol in the text. Include the * symbol in output.
 
 RARITY — HOW TO DETERMINE:
-Look ONLY at the color of the Ascension number and Curio Name text. This text sits to the right of the curio image on a dark blue background. Do NOT use the +N enhancement text for rarity — it is always gold/yellow regardless of rarity. Do NOT use the curio artwork, box border, or star icons.
+Look at the COLOR OF THE BORDER/FRAME surrounding the square curio image box. This is the most reliable rarity indicator. Do NOT use the +N enhancement text (always gold), the star icons, or the curio artwork color.
 
-Color-to-Rarity mapping for the Ascension + Name text:
-- Legendary = Red or crimson. A strong, saturated red with little or no orange tone.
-- Epic = Orange or amber. A warm orange-gold, clearly warmer than red and distinct from yellow.
-- Superb = Purple, magenta, or pink. Ranges from violet to pink-purple. Clearly distinct from both blue and orange.
-- Uncommon = Blue or cyan. A cool blue, sometimes with a slight teal tint. Clearly distinct from purple.
-- Common = Green.
+Border color to Rarity mapping:
+- Legendary = Deep red or crimson border (~#8b1a1a or similar dark red)
+- Epic = Gold or amber border (~#c8860a or similar warm gold)
+- Superb = Purple or violet border (~#6a0dad or similar purple)
+- Uncommon = Blue border
+- Common = Green border
 
-TIPS FOR DISTINGUISHING SIMILAR COLORS:
-- Epic (orange) vs Legendary (red): Epic has a clear orange/amber warmth. Legendary is a deeper, cooler red without orange tones.
-- Superb (purple) vs Uncommon (blue): Superb has a pink or magenta component. Uncommon is a purer blue or cyan without pink.
-- If uncertain, compare the text color against neighboring curios. The screen is sorted by rarity (highest first), so rarity transitions happen in blocks, not randomly.
+SECONDARY CHECK — NAME TEXT COLOR:
+If the border color is ambiguous, also check the color of the Ascension number and Curio Name text (to the right of the image on the dark blue background):
+- Legendary = Red or crimson text near #dc3f4a
+- Epic = Orange or amber text near #ffb947
+- Superb = Purple, magenta, or pink text near #e965ee
+- Uncommon = Blue or cyan text
+- Common = Green text
+
+Note: Legendary and Epic name text can appear similar (both warm orange tones). When in doubt, rely on the border color.
+
+TIPS FOR DISTINGUISHING SIMILAR RARITIES:
+- Legendary border is a darker, more saturated RED/CRIMSON
+- Epic border is GOLD/AMBER — warm yellow-gold
+- Superb border is PURPLE/VIOLET
+- The border color is more reliable than text color for Legendary vs Epic distinction
 
 SORT ORDER (use as a consistency check):
 Curios are displayed top-to-bottom in this priority:
 1. Rarity descending: Legendary > Epic > Superb > Uncommon > Common
 2. Enhancement descending (within same rarity)
 3. Ascension descending (within same rarity and enhancement)
-A curio cannot have a higher rarity than the one above it. If your rarity assignment violates this sort order, re-examine the text color.
+A curio cannot have a higher rarity than the one above it. If your rarity assignment violates this sort order, re-examine the border color.
 
 DEDUPLICATION:
 When processing multiple overlapping screenshots:
@@ -82,7 +93,7 @@ Legendary | 600 | 600 | 1200
 ---
 
 OUTPUT FORMAT:
-Output the data in TSV (Tab-Separated Values) wrapped in a code block with triple backticks ( \`\`\` ) as a code snippet so I have the copy button. This allows direct paste into Google Sheets or Excel with columns splitting correctly.
+Output the data in TSV (Tab-Separated Values) wrapped in a code block with triple backticks as a code snippet so I have the copy button. This allows direct paste into Google Sheets or Excel with columns splitting correctly.
 
 > **⚠ OUTPUT LIMIT:** Free versions of AI chatbots appear to not support the extended features like the copy button that preserves the tab formatting. In that case you can either manually request the data in a different format or use the Split function in Google Sheets.
 
