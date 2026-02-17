@@ -7,6 +7,8 @@ AI prompts and skills for the mobile strategy game Puzzles & Chaos.
 | File | Function |
 |------|----------|
 | [`inventory-audit.md`](prompts/inventory-audit.md) | Classifies resource vs. speedup screenshots, audits inventory, calculates totals |
+| [`hero-inventory.md`](prompts/hero-inventory.md) | Extracts hero stats (name, level, enhancement, stars) from hero inventory screenshots |
+| [`curio-inventory.md`](prompts/curio-inventory.md) | Extracts Curio data (name, rarity, enhancement, ascension) from Curio Warehouse screenshots with Legion Attribute and Hero Attribute lookups |
 
 ## Available Skills (modular)
 
@@ -25,4 +27,5 @@ AI prompts and skills for the mobile strategy game Puzzles & Chaos.
 
 ## Coming Soon
 
-- Hero inventory audit with wiki data lookup
+- Curio Legion Attributes and Exclusive Attributes lookup tables
+- Curio-to-Hero partner mapping
