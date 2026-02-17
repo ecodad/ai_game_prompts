@@ -4,7 +4,7 @@ A collection of engineered prompts that turn AI assistants into specialized tool
 
 ## What This Is
 
-These prompts are designed to be pasted directly into AI chat interfaces (Claude, ChatGPT, etc.) alongside game screenshots. Each prompt acts as a purpose-built analyst for a specific in-game function, extracting structured data from images and performing calculations that would otherwise require manual effort.
+These prompts are designed to be pasted directly into AI chat interfaces (Claude, ChatGPT, Gemini, etc.) alongside game screenshots. Each prompt acts as a purpose-built analyst for a specific in-game function, extracting structured data from images and performing calculations that would otherwise require manual effort.
 
 **Current focus:** Puzzles & Chaos (mobile strategy game)
 
@@ -13,13 +13,16 @@ These prompts are designed to be pasted directly into AI chat interfaces (Claude
 Each game has its own folder containing two subfolders:
 
 - **`prompts/`** — Standalone, self-contained prompts. Copy-paste into any AI chat. No setup required.
-- **`skills/`** — Modular pieces for skill-based workflows. A master classifier identifies the screenshot type and loads only the relevant analysis skill, saving context window space.
+- **`skills/`** — Modular pieces for skill-based workflows. A master classifier identifies the screenshot type and loads only the relevant analysis skill, saving context window space. **(Work in progress — see note below.)**
 
 ```
 ai_game_prompts/
 ├── puzzles_and_chaos/
 │   ├── prompts/
-│   │   └── inventory-audit.md              (standalone, all-in-one)
+│   │   ├── inventory-audit.md              (resources & speedups, all-in-one)
+│   │   ├── hero-inventory.md               (hero stats extraction)
+│   │   ├── curio-inventory.md              (Curio Warehouse with attribute lookups)
+│   │   └── soulfice-inventory.md           (Soulfice Warehouse with attribute lookups)
 │   ├── skills/
 │   │   ├── classifier.md                   (master: identifies screenshot type)
 │   │   ├── resource-audit-skill.md         (Protocol A: resources)
@@ -37,19 +40,22 @@ ai_game_prompts/
 
 Both approaches produce the same output. The skills version is more efficient with tokens since it only loads the protocol needed for the screenshot type detected.
 
+> **⚠ Skills are incomplete:** The skills workflow is an early proof of concept and covers only resources and speedups. It has not been extended to cover the newer inventory types (Curio, Soulfice, Hero). Expanding the skills system to cover all prompt types is a planned area of future work.
+
 ## Prompt Design Principles
 
 These prompts use several techniques to get reliable results from AI vision models:
 
-- **Image classification** — The prompt first identifies what type of screenshot it's looking at (e.g., Resources tab vs. Speedups tab) before choosing an analysis path.
+- **Image classification** — The prompt first identifies what type of screenshot it's looking at before choosing an analysis path.
 - **Protocol branching** — A single prompt handles multiple screenshot types by classifying the input first, then routing to the correct analysis protocol.
-- **Visual legend definitions** — Icons and symbols are described explicitly so the model knows what to look for (e.g., "Hammer = Building speedup").
-- **De-duplication rules** — Screenshots of scrolling inventories often overlap. The prompts include logic to detect and merge duplicate entries.
-- **Structured output formatting** — Every prompt specifies an exact output format so results are consistent and easy to compare across sessions.
+- **Visual legend definitions** — Icons and symbols are described explicitly so the model knows what to look for.
+- **Rarity normalization** — Some item types use inconsistent rarity naming in-game. Prompts include explicit normalization tables to map alternate names to canonical rarity values.
+- **De-duplication rules** — Screenshots of scrolling inventories often overlap. The prompts include logic to detect and remove duplicate entries using row-pair matching, which is more robust than single-item matching for items with identical names and enhancements.
+- **Structured output formatting** — Every prompt specifies an exact TSV output format for direct paste into spreadsheets.
 
 ## Contributing
 
-This project is in early stages. Contributions welcome:
+This project is in active development. Contributions welcome:
 
 - **Improve existing prompts** — Better accuracy, edge case handling, clearer instructions.
 - **Add new prompts** — For other games or other in-game functions.
@@ -65,8 +71,8 @@ This project is in early stages. Contributions welcome:
 
 ## Roadmap
 
-- [ ] Add hero inventory prompt with wiki lookup integration
-- [ ] Expand single-step prompts into multi-step workflows for complex tasks
+- [ ] Add Legion Attribute and Hero Attribute lookup tables to `soulfice-inventory.md` once values are confirmed
+- [ ] Expand skills system to cover Curio, Soulfice, and Hero inventory types
 - [ ] Add prompts for additional Puzzles & Chaos functions
 - [ ] Test and document compatibility across AI models (Claude, GPT-4, Gemini)
 - [ ] Build a prompt template structure for faster development of new game prompts
