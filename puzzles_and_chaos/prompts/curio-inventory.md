@@ -82,19 +82,24 @@ Legendary | 600 | 600 | 1200
 ---
 
 OUTPUT FORMAT:
-Output a tab-separated table with a header row, suitable for pasting into Google Sheets.
+Output the data in TSV (Tab-Separated Values) wrapped in a code block with triple backticks ( \`\`\` ) as a code snippet so I have the copy button. This allows direct paste into Google Sheets or Excel with columns splitting correctly.
+
+> **⚠ OUTPUT LIMIT:** Free versions of AI chatbots appear to not support the extended features like the copy button that preserves the tab formatting. In that case you can either manually request the data in a different format or use the Split function in Google Sheets.
+
 Use exactly these column headers:
 
-Name	Rarity	Enhancement	Ascension	Legion Attribute	Hero Attributes
+Name	Rarity	Enhancement	Ascension	Legion Attribute (Troop DEF/HP/ATK)	Hero Attributes (HP/DEF/ATK)
 
-- Legion Attribute: The percentage value from the Legion Attributes table (e.g., "19%").
-- Hero Attributes: The HP / DEF / ATK values from the Hero Attributes table as a combined string (e.g., "300 / 300 / 600").
+- Legion Attribute (Troop DEF/HP/ATK): The percentage value from the Legion Attributes table (e.g., "19%").
+- Hero Attributes (HP/DEF/ATK): The HP / DEF / ATK values from the Hero Attributes table as a combined string (e.g., "300 / 300 / 600").
 
 Rules:
 1. Read left box then right box per row, top to bottom.
-2. Output ONLY the tab-separated table — no commentary, no markdown code fences, no extra text.
-3. Enhancement values must include the + prefix (e.g., +8). Ascension values must include the * suffix (e.g., 5*).
-4. Combine wrapped Curio names into one (e.g., "Crescent" + "Scepter" = "Crescent Scepter").
-5. Use ? for any unreadable field. If a lookup cannot be performed due to a missing or unreadable input field, use ? for the lookup column as well.
-6. Apply deduplication across all provided screenshots.
-7. If an Enhancement + Ascension combination is not in the Legion Attributes table (empty cell), output "N/A" for that column.
+2. Output ONLY the TSV code block. No commentary or extra text outside the code block.
+3. The code block must use triple backticks. Do not use any language identifier after the opening backticks.
+4. Rows must be separated by a single newline. Do not add blank lines between rows.
+5. Enhancement values must include the + prefix (e.g., +8). Ascension values must include the * suffix (e.g., 5*).
+6. Combine wrapped Curio names into one (e.g., "Crescent" + "Scepter" = "Crescent Scepter").
+7. Use ? for any unreadable field. If a lookup cannot be performed due to a missing or unreadable input field, use ? for the lookup column as well.
+8. Apply deduplication across all provided screenshots.
+9. If an Enhancement + Ascension combination is not in the Legion Attributes table (empty cell), output "N/A" for that column.
