@@ -98,4 +98,4 @@ IF "SPEEDUPS" is active -> Execute PROTOCOL B.
 1. **Detected Inventory Type:** [e.g., Resources]
 2. **Consolidated Inventory:** [List of items]
 3. **Calculated Totals:** [The math summary requested in the Protocol]
-4. Also report the summary for the inventories in a tab separated values list so that it is easy to copy and paste to a spreadsheet. For resources, that should be the total amount of each resource in the order of food, wood, stone, iron, hero juice (skip the percentages in this special formatted summary). For speedups, that should be the total number of minutes for each speedup in the order of general, research, healing, training, building (skip the percentages in this special formatted summary).
+
