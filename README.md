@@ -14,6 +14,7 @@ Each game has its own folder containing two subfolders:
 
 - **`prompts/`** — Standalone, self-contained prompts. Copy-paste into any AI chat. No setup required.
 - **`skills/`** — Modular pieces for skill-based workflows. A master classifier identifies the screenshot type and loads only the relevant analysis skill, saving context window space. **(Work in progress — see note below.)**
+- - **`gems/`** — Links to shared Gemini **gems**.
 
 ```
 ai_game_prompts/
@@ -27,6 +28,7 @@ ai_game_prompts/
 │   │   ├── classifier.md                   (master: identifies screenshot type)
 │   │   ├── resource-audit-skill.md         (Protocol A: resources)
 │   │   └── speedup-audit-skill.md          (Protocol B: speedups)
+│   ├── gems/                               (links to shared gems)
 │   └── README.md
 └── README.md
 ```
