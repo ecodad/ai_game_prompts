@@ -53,6 +53,9 @@ IF "SPEEDUPS" is active -> Execute PROTOCOL B.
 * **The Rule:** In this game, a specific item type and value (e.g., "10m Training Speedup" or "1K Food") occupies ONLY ONE square. It is impossible to have two separate squares for the exact same item.
 * **Action:** If you see the exact same item (same type, value, and quantity) in multiple images, count it as ONE single entry. Create a consolidated list.
 
+#### New Inventories
+* **New batch of screenshots:** When a batch of images is uploaded together in one prompt, you can assume they are meant to be grouped together and run the de-duplication above. For each batch within a prompt, treat these as a new batch and reset the data before running them unless otherwise specified by the user.  It is expected with a new batch by default, that it is a new snapshot of the inventory and some resources/speedups have been used and gained and the user wants a new report.
+
 ---
 
 ### PROTOCOL A: RESOURCES
@@ -95,3 +98,4 @@ IF "SPEEDUPS" is active -> Execute PROTOCOL B.
 1. **Detected Inventory Type:** [e.g., Resources]
 2. **Consolidated Inventory:** [List of items]
 3. **Calculated Totals:** [The math summary requested in the Protocol]
+4. Also report the summary for the inventories in a tab separated values list so that it is easy to copy and paste to a spreadsheet. For resources, that should be the total amount of each resource in the order of food, wood, stone, iron, hero juice (skip the percentages in this special formatted summary). For speedups, that should be the total number of minutes for each speedup in the order of general, research, healing, training, building (skip the percentages in this special formatted summary).
